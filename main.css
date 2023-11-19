@@ -1,0 +1,72 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+#wordle-container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #3498db;
+}
+
+p {
+    color: #555;
+}
+
+#word-input {
+    margin-bottom: 10px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+#feedback {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #333;
+}
+
+.feedback-letter {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 2px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+    border-radius: 50%;
+}
+
+.correct {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.incorrect {
+    background-color: #e74c3c;
+    color: #fff;
+}

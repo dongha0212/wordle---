@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordle 게임</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+    <div id="wordle-container">
+        <!-- 게임 제목 -->
+        <h1>Wordle 게임</h1>
+        <!-- 안내 문구 -->
+        <p>5글자의 단어를 맞춰보세요.</p>
+        <!-- 단어 입력 상자, 최대길이 5로 지정-->
+        <input type="text" id="word-input" maxlength="5" placeholder="단어 입력">
+        <!-- 제출 버튼 -->
+        <button onclick="checkWord()">제출</button>
+        <!-- 피드백 영역 -->
+        <p id="feedback"></p>
+    </div>
+
+    <script>
+        
+        //단어 설정과 시도 횟수 초기화
+        let targetWord = generateRandomWord();
+        let attempts = 0;
+
+        //랜덤 단어 생성 함수
+        function generateRandomWord() {
+            const words = ["apple", "table", "chair", "cloud", "dance"];
+            return words[Math.floor(Math.random() * words.length)];
+        }
+        // 단어 확인 함수
+        function checkWord() {
+
+            // 사용자가 입력한 단어 가져오기
+            const userInput = document.getElementById('word-input').value.toLowerCase();
+            
+            // 5글자가 아닌 경우 경고 표시
+            if (userInput.length !== 5) {
+                alert('5글자의 단어를 입력하세요.');
+                return;
+            }
+            
+            // 시도 횟수 증가
+            attempts++;
+
+            // 피드백 초기화
+            let feedback = '';
+            
+
+              // 각 글자에 대한 피드백 생성
+            for (let i = 0; i < 5; i++) {
+                if (userInput[i] === targetWord[i]) {
+                    feedback += '<span class="feedback-letter correct">' + userInput[i] + '</span>';
+                } else if (targetWord.includes(userInput[i])) {
+                    feedback += '<span class="feedback-letter incorrect">' + userInput[i] + '</span>';
+                } else {
+                    feedback += '<span class="feedback-letter"></span>';
+                }
+            }
+             // 피드백 업데이트
+            document.getElementById('feedback').innerHTML = feedback;
+
+
+             // 정답일 경우 축하 메시지 표시하고 게임 리셋
+            if (userInput === targetWord) {
+                alert(`축하합니다! ${attempts}번만에 단어를 맞추셨습니다.`);
+                resetGame();
+            }
+        }
+          // 게임 리셋 함수
+        function resetGame() {
+
+            // 새로운 랜덤 단어 선택 및 시도 횟수 초기화
+            targetWord = generateRandomWord();
+            attempts = 0;
+            
+            // 입력 상자 및 피드백 초기화
+            document.getElementById('word-input').value = '';
+            document.getElementById('feedback').innerHTML = '';
+        }
+    </script>
+
+</body>
+</html>
